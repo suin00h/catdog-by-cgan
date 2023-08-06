@@ -10,11 +10,11 @@
     </tr>
 </table>
 
- Generating images of ***Catdog*** by Conditional-Convolutional-GAN
+Generating images of ***Catdog*** by Conditional-Convolutional-GAN
  
- Results
- --
- @ Epoch: 10
- <p align=center>
+Results
+--
+### Epochs: 10
+<p align=center>
 <img src="images/epoch_10.gif" width="600"/>
 </p>
