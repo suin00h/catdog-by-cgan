@@ -1,5 +1,6 @@
  Catdog by CCGAN
  ==
+ <p align=center>
 <table>
     <tr><th>Tags</th><th>Techs</th><th>Status</th></tr>
     <tr>
@@ -9,6 +10,7 @@
         <td> <img src="https://img.shields.io/badge/Working-black?style=flat&logo=esbuild&logoColor=blue" alt="Wrk"> </td>
     </tr>
 </table>
+</p>
 
 Generating images of ***Catdog*** by Conditional-Convolutional-GAN
  
