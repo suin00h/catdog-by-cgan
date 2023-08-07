@@ -1,7 +1,8 @@
  Catdog by CCGAN
  ==
- <p align=center>
-<table>
+ 
+<p align=center>
+<table align=center>
     <tr><th>Tags</th><th>Techs</th><th>Status</th></tr>
     <tr>
         <td>    <img src="https://img.shields.io/badge/ComputerVision-black?style=flat&logo=codereview&logoColor=skyblue" alt="CV">
@@ -13,7 +14,15 @@
 </p>
 
 Generating images of ***Catdog*** by Conditional-Convolutional-GAN
- 
+
+Dataset
+--
+*TBU*
+
+Model Architecture
+--
+*TBU*
+
 Results
 --
 ### Epochs: 10
@@ -40,3 +49,8 @@ Results
     <td><img src="images/epoch_500_catdog.png" height="100"/></td>
 </tr>
 </table>
+
+TODO
+--
+* Reconstruct overall architecture
+* .ipynb -> .py
