@@ -18,3 +18,23 @@ Results
 <p align=center>
 <img src="images/epoch_10.gif" width="600"/>
 </p>
+
+### Epochs: 100
+<p align=center>
+<img src="images/epoch_100.png" width="600"/>
+</p>
+
+### Epochs: 500
+<p align=center>
+<table align="center">
+<tr>
+    <th>Cat</th>
+    <th>Dog</th>
+    <th>Catdog</th>
+</tr>
+<tr>
+    <td><img src="images/epoch_500_cat.png" width="100"/></td>
+    <td><img src="images/epoch_500_dog.png" width="100"/></td>
+    <td><img src="images/epoch_500_catdog.png" height="100"/></td>
+</tr>
+</table>
