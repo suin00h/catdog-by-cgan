@@ -48,7 +48,7 @@ class animalFaceDatasetCSV(Dataset):
                 )
             ])
         self.metadata = pd.read_csv(os.path.join(self.root, 'afhq-metadata.csv'))
-        self.metadata = self.metadata[split in self.metadata['split']]
+        self.metadata = self.metadata[self.metadata['split'] == split]
         
     def __len__(self):
         return len(self.metadata)
@@ -84,4 +84,24 @@ def writeMetadataCSV() -> None:
     return            
     
 if __name__ == "__main__":
+    print("Metadata Check:")
     writeMetadataCSV()
+    
+    print("\nDataset by ImageFolder method:")
+    dataset = animalFaceDataset()
+    print(f"Dataset lenght: {len(dataset)}")
+    sampleData = dataset[0]
+    print(f"Sample data type: {type(sampleData)}")
+    print(f"Sample data class index: {sampleData[-1]}")
+    # print(f"Sample data class: {sampleData['className']}")
+    print(f"Sample data shape: {sampleData[0].shape}")
+    print(f"Sample data slice:\n{sampleData[0][0, :5, :5]}")
+    
+    print("\nDataset by PIL.Image method:")
+    dataset = animalFaceDatasetCSV()
+    print(f"Dataset lenght: {len(dataset)}")
+    sampleData = dataset[0]
+    print(f"Sample data class: {sampleData['className']}")
+    print(f"Sample data type: {type(sampleData['image'])}")
+    print(f"Sample data shape: {sampleData['image'].shape}")
+    print(f"Sample data slice:\n{sampleData['image'][0, :5, :5]}")
