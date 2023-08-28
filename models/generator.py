@@ -76,3 +76,18 @@ def getActivaiton(activationType: str):
         print("Invalid activation type!")
         relu = nn.Identity()
     return relu
+
+if __name__ == "__main__":
+    noiseChannel = 100
+    labelChannel = 3
+    noise = torch.randn((10, noiseChannel, 1, 1))
+    label = torch.randn((10, labelChannel, 1, 1))
+    print("Input shapes:")
+    print(f"noise: {noise.shape}")
+    print(f"label: {label.shape}")
+    
+    model = generator(noiseChannel, labelChannel)
+    print(f"\nModel: {model}")
+    
+    output = model(noise, label)
+    print(f"\nOutput shape: {output.shape}")
