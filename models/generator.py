@@ -8,12 +8,12 @@ class generator(nn.Module):
         self,
         noiseChannel: int,
         labelChannel: int,
-        numLayer: int=5,
         layerChannels: tuple=(256, 128, 128, 64, 3),
         activationType: str='relu'
     ):
         super().__init__()
         outChannel = layerChannels[0]
+        numLayer = len(layerChannels)
         
         self.noiseLayer = getDeconvLayer(noiseChannel, outChannel, stride=1, padding=0)
         self.labelLayer = getDeconvLayer(labelChannel, outChannel, stride=1, padding=0)
