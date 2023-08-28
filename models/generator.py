@@ -8,7 +8,7 @@ class generator(nn.Module):
         self,
         noiseChannel: int,
         labelChannel: int,
-        layerChannels: tuple=(256, 128, 128, 64, 3),
+        layerChannels: Tuple[int]=(256, 128, 128, 64, 3),
         activationType: str='relu'
     ):
         super().__init__()
@@ -48,7 +48,7 @@ class generator(nn.Module):
 def getDeconvLayer(
         inChannel,
         outChannel,
-        kernelSize: Tuple[int]=(4, ),
+        kernelSize: Tuple[int]=(4, 4),
         stride: int=2,
         padding: int=1,
         activationType: str='relu',
