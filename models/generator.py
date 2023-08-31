@@ -40,20 +40,20 @@ class generator(nn.Module):
         noise = self.noiseLayer(noise)
         label = self.labelLayer(label)
         
-        inputLatent = torch.cat((noise, label), dim=1)
+        latent = torch.cat((noise, label), dim=1)
         for deconvLayer in self.deconvLayers:
-            outputImage = deconvLayer(inputLatent)
-        return outputImage
+            latent = deconvLayer(latent)
+        return latent # [3, 128, 128] generated image.
 
 def getDeconvLayer(
-        inChannel,
-        outChannel,
-        kernelSize: Tuple[int]=(4, 4),
-        stride: int=2,
-        padding: int=1,
-        activationType: str='relu',
-        isFinal: bool=False
-    ) -> nn.Module:
+    inChannel,
+    outChannel,
+    kernelSize: Tuple[int]=(4, 4),
+    stride: int=2,
+    padding: int=1,
+    activationType: str='relu',
+    isFinal: bool=False
+) -> nn.Module:
     deconv = nn.ConvTranspose2d(inChannel, outChannel, kernelSize, stride, padding)
     batchNorm = nn.Identity() if isFinal else nn.BatchNorm2d(outChannel)
     activation = nn.Tanh() if isFinal else getActivaiton(activationType)
