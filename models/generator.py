@@ -40,10 +40,10 @@ class generator(nn.Module):
         noise = self.noiseLayer(noise)
         label = self.labelLayer(label)
         
-        input = torch.cat((noise, label), dim=1)
+        inputLatent = torch.cat((noise, label), dim=1)
         for deconvLayer in self.deconvLayers:
-            input = deconvLayer(input)
-        return input
+            outputImage = deconvLayer(inputLatent)
+        return outputImage
 
 def getDeconvLayer(
         inChannel,
