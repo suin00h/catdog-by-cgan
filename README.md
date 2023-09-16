@@ -1,39 +1,46 @@
- Catdog by CCGAN
- ==
- 
-<table align=center>
-    <tr><th>Tags</th><th>Techs</th><th>Status</th></tr>
-    <tr>
-        <td>
-            <img src="https://img.shields.io/badge/GenerativeModels-black?style=flat&logo=pixiv" alt="GM">
-        </td>
-        <td><img src="https://img.shields.io/badge/Pytorch-black?style=flat&logo=pytorch&logoColor=DE3412" /></td>
-        <td><img src="https://img.shields.io/badge/Working-black?style=flat&logo=esbuild&logoColor=blue" alt="Wrk"></td>
-    </tr>
-</table>
+![Generative Models](https://img.shields.io/badge/Generative_Models-0096FA?style=flat-square&logo=pixiv&logoColor=0096FA&label=Tag&labelColor=212030)
+![Techs](https://img.shields.io/badge/Pytorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=EE4C2C&label=Tech&labelColor=212030)
+![Status](https://img.shields.io/badge/Working-19947C?style=flat-square&logo=esbuild&logoColor=24DBB6&label=Status&labelColor=212030)
 
-* Generating images of ***Catdog*** by Conditional-Convolutional-GAN
+![Main Image](images/epoch_10.gif)
+## About
+This personal project synthesize animal images via **Conditional-GAN**, extended generative adversarial network.
 
-Dataset
---
-*TBU*
+During the training process, the label is additionally given to the generator as input and the discriminator determines its class. Then, we can manipulate the generator's input during the sampling process to get the desired class.
 
-Model Architecture
---
-*TBU*
+The project's goal is to check whether we can sample the synthesized animal images by giving **multi-labeled input** to the generator.
+## Dataset
+### Animal Faces-HQ(AFHQ)
+Introduced by Choi et al. in `StarGAN v2: Diverse Image Synthesis for Multiple Domains`.
 
-Results
---
+AFHQ is a dataset of animal faces consisting of 15,000 high-quality images at 512 × 512 resolution.  
+The dataset includes three domains of cat, dog, and wildlife, each providing 5000 images.  
+All images are vertically and horizontally aligned to have the eyes at the center.
+### Download dataset
+```sh
+kaggle datasets download -d andrewmvd/animal-faces -p ./dataset/ --unzip
+```
+### Dataset Directory
+```
+dataset
+|-- afhq
+|   |-- train
+|   |   |-- cat
+|   |   |   |-- flickr_cat_000002.jpg
+|   |   |   |-- ...
+|   |   |-- dog
+|   |   |-- wild
+|   |-- val
+|   |   |-- cat
+|   |   |-- ...
+```
+## Model Architecture
+*TBU*  
+## Results
 ### Epochs: 10
-<p align=center>
-<img src="images/epoch_10.gif" width="600"/>
-</p>
-
+![Image 10](images/epoch_10.gif)
 ### Epochs: 100
-<p align=center>
-<img src="images/epoch_100.png" width="600"/>
-</p>
-
+![Image 100](images/epoch_100.png)
 ### Epochs: 500
 <table align="center">
 <tr>
@@ -48,7 +55,6 @@ Results
 </tr>
 </table>
 
-TODO
---
+## TODO
 * Reconstruct overall architecture
 * .ipynb -> .py
