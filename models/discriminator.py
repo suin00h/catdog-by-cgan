@@ -2,58 +2,62 @@ from typing import Tuple
 
 import torch
 import torch.nn as nn
+from torch import Tensor
 
 from generator import getActivaiton
 
-class discriminator(nn.Module):
+class Discriminator(nn.Module):
     def __init__(
         self,
-        imageChannel: int=3,
-        layerChannels: Tuple[int]=(64, 128, 256, 512, 512, 1),
-        activationType: str='relu'
+        image_channel: int=3,
+        layer_channels: Tuple[int]=(64, 128, 256, 512, 512, 1),
+        activation_type: str='relu'
     ):
         super().__init__()
-        outChannel = imageChannel
-        numLayer = len(layerChannels)
+        out_channel = image_channel
+        num_layer = len(layer_channels)
         
-        self.convLayers = nn.ModuleList([])
+        self.conv_layers = nn.ModuleList([])
         
-        for i in range(numLayer):
-            inChannel = outChannel
-            outChannel = layerChannels[i]
-            isFinal = (i == len(layerChannels) - 1)
-            stride, padding = (1, 0) if isFinal else (2, 1)
-            convLayer = getConvLayer(
-                inChannel=inChannel,
-                outChannel=outChannel,
+        for i in range(num_layer):
+            in_channel = out_channel
+            out_channel = layer_channels[i]
+            is_final = (i == len(layer_channels) - 1)
+            stride, padding = (1, 0) if is_final else (2, 1)
+            conv_layer = getConvLayer(
+                in_channel=in_channel,
+                out_channel=out_channel,
                 stride=stride,
                 padding=padding,
-                activationType=activationType,
-                isFinal=isFinal
+                activation_type=activation_type,
+                is_final=is_final
             )
-            self.convLayers.append(convLayer)
+            self.conv_layers.append(conv_layer)
     
-    def forward(self, latent: torch.Tensor):
-        for convLayer in self.convLayers:
-            latent = convLayer(latent)
+    def forward(
+        self,
+        latent: Tensor
+    ):
+        for conv_layer in self.conv_layers:
+            latent = conv_layer(latent)
         return latent.view(-1)
 
 def getConvLayer(
-    inChannel,
-    outChannel,
-    kernelSize: Tuple[int]=(4, 4),
+    in_channel,
+    out_channel,
+    kernel_size: Tuple[int]=(4, 4),
     stride: int=2,
     padding: int=1,
-    activationType: str='relu',
-    isFinal: bool=False
+    activation_type: str='relu',
+    is_final: bool=False
 ) -> nn.Module:
-    conv = nn.Conv2d(inChannel, outChannel, kernelSize, stride, padding)
-    batchNorm = nn.Identity() if isFinal else nn.BatchNorm2d(outChannel)
-    activation = nn.Sigmoid() if isFinal else getActivaiton(activationType)
+    conv = nn.Conv2d(in_channel, out_channel, kernel_size, stride, padding)
+    batch_norm = nn.Identity() if is_final else nn.BatchNorm2d(out_channel)
+    activation = nn.Sigmoid() if is_final else getActivaiton(activation_type)
     
     layer = nn.Sequential(
         conv,
-        batchNorm,
+        batch_norm,
         activation
     )
     return layer
@@ -63,7 +67,7 @@ if __name__ == "__main__":
     print("Input shape:")
     print(f"image: {image.shape}")
     
-    model = discriminator()
+    model = Discriminator()
     print(f"\nModel: {model}")
     
     output = model(image)
