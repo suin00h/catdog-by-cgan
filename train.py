@@ -8,8 +8,8 @@ from models.discriminator import Discriminator
 gen_model = Generator()
 gen_optimizer = optim.Adam()
 
-def train():
-    ...
+def run():
+    trainEpoch()
 
 def trainEpoch(
     num_batch: int,
@@ -24,7 +24,8 @@ def getInputNoise(
     return torch.randn((num_batch, num_channel, 1, 1))
 
 def main():
-    train()
+    #argparse and config settings
+    run()
 
 if __name__ == "__main__":
     main()
