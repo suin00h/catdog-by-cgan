@@ -5,10 +5,10 @@ from torch import Tensor
 from models.generator import Generator
 from models.discriminator import Discriminator
 
-gen_model = Generator()
-gen_optimizer = optim.Adam()
 
 def run():
+    gen_model = Generator()
+    gen_optimizer = optim.Adam()
     trainEpoch()
 
 def trainEpoch(
